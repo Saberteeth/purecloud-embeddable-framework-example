@@ -1,16 +1,29 @@
-var contactSearchCallback;
+// function getUrlVars() {
+    // var vars = {};
+    // var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        // vars[key] = value;
+    // });
+    // return vars;
+// }
+
+// var contactSearchCallback;
+// var setLang = getUrlVars()["lang"];
 
 window.Framework = {
     config: {
-        name:"ExampleGitHubApp",
+        name:"ExampleGitHubAppHAHA",
         clientIds: {
             'mypurecloud.com': '',
             'mypurecloud.ie': '',
             'mypurecloud.com.au': '',
             'mypurecloud.jp': '',
-            'mypurecloud.de': ''
+            'mypurecloud.de': '',
+			'usw2.pure.cloud': '1f479b8c-21bd-4115-807c-acb90bdeabea'
         },
-        customInteractionAttributes: ['PT_URLPop', 'PT_SearchValue', 'PT_TransferContext'],
+		// getUserLanguage: function (callback) {
+        // callback(setLang);
+		// },
+		customInteractionAttributes: ['LangSelect','RecordingLink','DNIS','InteractionID'],
         settings: {
             embedWebRTCByDefault: true,
             hideWebRTCPopUpOption: false,
@@ -20,6 +33,7 @@ window.Framework = {
             hideCallLogContact: false,
             hideCallLogRelation: false,
             searchTargets: ['people', 'queues', 'frameworkcontacts'],
+		//	callControls: ["pickup", "transfer", "mute", "disconnect"],
             theme: {
                 primary: '#d4cebd',
                 text: '#123'
@@ -59,6 +73,7 @@ window.Framework = {
                         window.PureCloud.addAssociation(message.data);
                     }else if(message.type == "addAttribute"){
                         window.PureCloud.addCustomAttributes(message.data);
+					
                     }else if(message.type == "addTransferContext"){
                         window.PureCloud.addTransferContext(message.data);
                     }else if(message.type == "sendContactSearch"){
@@ -104,3 +119,7 @@ window.Framework = {
         window.parent.postMessage(JSON.stringify({type:"contactSearch" , data:{searchString:searchString}}) , "*");
     }
 };
+
+
+
+
